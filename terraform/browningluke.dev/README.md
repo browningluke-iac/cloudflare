@@ -16,11 +16,11 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cf_record"></a> [cf\_record](#module\_cf\_record) | app.terraform.io/browningluke/record/cloudflare | ~> 1.0 |
-| <a name="module_cf_rule_firewall"></a> [cf\_rule\_firewall](#module\_cf\_rule\_firewall) | app.terraform.io/browningluke/rule-firewall/cloudflare | ~> 1.0 |
-| <a name="module_cf_rule_page"></a> [cf\_rule\_page](#module\_cf\_rule\_page) | app.terraform.io/browningluke/rule-page/cloudflare | ~> 1.0 |
-| <a name="module_cf_rule_redirect"></a> [cf\_rule\_redirect](#module\_cf\_rule\_redirect) | app.terraform.io/browningluke/rule-redirect/cloudflare | ~> 1.0 |
-| <a name="module_cf_rule_transform"></a> [cf\_rule\_transform](#module\_cf\_rule\_transform) | app.terraform.io/browningluke/rule-transform/cloudflare | ~> 1.0 |
+| <a name="module_cf_record"></a> [cf\_record](#module\_cf\_record) | ../_modules/record | n/a |
+| <a name="module_cf_rule_firewall"></a> [cf\_rule\_firewall](#module\_cf\_rule\_firewall) | ../_modules/rule-firewall | n/a |
+| <a name="module_cf_rule_page"></a> [cf\_rule\_page](#module\_cf\_rule\_page) | ../_modules/rule-page | n/a |
+| <a name="module_cf_rule_redirect"></a> [cf\_rule\_redirect](#module\_cf\_rule\_redirect) | ../_modules/rule-redirect | n/a |
+| <a name="module_cf_rule_transform"></a> [cf\_rule\_transform](#module\_cf\_rule\_transform) | ../_modules/rule-transform | n/a |
 
 ## Resources
 

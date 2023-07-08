@@ -1,53 +1,50 @@
 locals {
   env = "browningluke.dev"
+
+  data_path = "${path.module}/../../data/${local.env}"
 }
 
 # DNS Records
 module "cf_record" {
-  source  = "app.terraform.io/browningluke/record/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/record"
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
-  config = file("${path.module}/../../data/${local.env}/dns.yaml")
+  records = yamldecode(file("${local.data_path}/dns.yaml"))
 }
 
 # Transform Rules
 module "cf_rule_transform" {
-  source  = "app.terraform.io/browningluke/rule-transform/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/rule-transform"
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
-  config = file("${path.module}/../../data/${local.env}/rules_transform.yaml")
+  rules = yamldecode(file("${local.data_path}/rules_transform.yaml"))
 }
 
 # Page Rules
 module "cf_rule_page" {
-  source  = "app.terraform.io/browningluke/rule-page/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/rule-page"
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
-  config = file("${path.module}/../../data/${local.env}/rules_page.yaml")
+  rules = yamldecode(file("${local.data_path}/rules_page.yaml"))
 }
 
 # Bulk Redirects
 module "cf_rule_redirect" {
-  source  = "app.terraform.io/browningluke/rule-redirect/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/rule-redirect"
 
   cloudflare_account_id = var.cloudflare_account_id
 
-  config = file("${path.module}/../../data/${local.env}/rules_redirect.yaml")
+  rules = yamldecode(file("${local.data_path}/rules_redirect.yaml"))
 }
 
 # Firewall Rules
 module "cf_rule_firewall" {
-  source  = "app.terraform.io/browningluke/rule-firewall/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/rule-firewall"
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
-  config = file("${path.module}/../../data/${local.env}/rules_firewall.yaml")
+  rules = yamldecode(file("${local.data_path}/rules_firewall.yaml"))
 }
