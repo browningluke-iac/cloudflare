@@ -1,15 +1,10 @@
-locals {
-  rules_redirect_yaml = yamldecode(var.config)
-  rules_redirect      = { for each in local.rules_redirect_yaml : each.name => each }
-}
-
 resource "cloudflare_list" "redirect_list" {
-  for_each = local.rules_redirect
+  for_each = { for each in var.rules : each.name => each }
 
   account_id = var.cloudflare_account_id
 
   name        = each.value.name
-  description = lookup(each.value, "description", "")
+  description = each.value.description
   kind        = "redirect"
 
   dynamic "item" {
@@ -23,12 +18,12 @@ resource "cloudflare_list" "redirect_list" {
           source_url = item.value.source
           target_url = item.value.target
 
-          status_code = lookup(item.value, "status_code", 301)
+          status_code = item.value.status_code
 
-          include_subdomains    = can(item.value.parameters) && lookup(item.value.parameters, "include_subdomains", false) ? "enabled" : "disabled"
-          subpath_matching      = can(item.value.parameters) && lookup(item.value.parameters, "subpath_matching", false) ? "enabled" : "disabled"
-          preserve_path_suffix  = can(item.value.parameters) && lookup(item.value.parameters, "preserve_path_suffix", false) ? "enabled" : "disabled"
-          preserve_query_string = can(item.value.parameters) && lookup(item.value.parameters, "preserve_query_string", false) ? "enabled" : "disabled"
+          include_subdomains    = item.value.parameters.include_subdomains ? "enabled" : "disabled"
+          subpath_matching      = item.value.parameters.subpath_matching ? "enabled" : "disabled"
+          preserve_path_suffix  = item.value.parameters.preserve_path_suffix ? "enabled" : "disabled"
+          preserve_query_string = item.value.parameters.preserve_query_string ? "enabled" : "disabled"
         }
       }
     }
@@ -43,10 +38,10 @@ resource "cloudflare_ruleset" "redirect_rule" {
   name  = "Redirect Rules"
 
   dynamic "rules" {
-    for_each = local.rules_redirect
+    for_each = { for each in var.rules : each.name => each }
 
     content {
-      enabled = lookup(rules.value, "enabled", true)
+      enabled = rules.value.enabled
       action  = "redirect"
 
       description = "Apply redirects from ${rules.value.name}"

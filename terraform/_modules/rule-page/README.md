@@ -29,7 +29,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cloudflare_zone_id"></a> [cloudflare\_zone\_id](#input\_cloudflare\_zone\_id) | n/a | `string` | n/a | yes |
-| <a name="input_config"></a> [config](#input\_config) | yaml data defining page rules | `string` | n/a | yes |
+| <a name="input_rules"></a> [rules](#input\_rules) | list of page rules | <pre>list(object({<br>    friendly_name = string<br>    target        = string<br>    priority      = number<br>    enabled       = optional(bool, true)<br><br>    actions = object({<br>      cache_level    = optional(string, null)<br>      edge_cache_ttl = optional(number, null)<br>    })<br>  }))</pre> | n/a | yes |
 
 ## Outputs
 

@@ -30,7 +30,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cloudflare_zone_id"></a> [cloudflare\_zone\_id](#input\_cloudflare\_zone\_id) | n/a | `string` | n/a | yes |
-| <a name="input_config"></a> [config](#input\_config) | yaml data defining firewall rules | `string` | n/a | yes |
+| <a name="input_rules"></a> [rules](#input\_rules) | list of firewall rules | <pre>list(object({<br>    friendly_name = string<br>    enabled       = optional(bool, true)<br>    description   = optional(string, "")<br>    action        = optional(string, "block")<br>    priority      = optional(number, null)<br><br>    filter = object({<br>      expression  = string<br>      description = optional(string, "")<br>    })<br>  }))</pre> | n/a | yes |
 
 ## Outputs
 

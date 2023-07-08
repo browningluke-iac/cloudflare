@@ -29,7 +29,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cloudflare_zone_id"></a> [cloudflare\_zone\_id](#input\_cloudflare\_zone\_id) | n/a | `string` | n/a | yes |
-| <a name="input_config"></a> [config](#input\_config) | yaml data defining transform rules | `string` | n/a | yes |
+| <a name="input_rules"></a> [rules](#input\_rules) | transform rules | <pre>object({<br>    rewrite_url = list(object({<br>      name       = string<br>      enabled    = optional(bool, true)<br>      expression = string<br><br>      path = optional(object({<br>        value   = string<br>        dynamic = optional(bool, false)<br>      }), null)<br><br>      query = optional(object({<br>        value   = string<br>        dynamic = optional(bool, false)<br>      }), null)<br>    }))<br>  })</pre> | n/a | yes |
 
 ## Outputs
 
