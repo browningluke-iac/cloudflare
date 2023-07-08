@@ -1,5 +1,7 @@
 locals {
   env = "browningluke.dev"
+
+  data_path = "${path.module}/../../data/${local.env}"
 }
 
 # DNS Records
@@ -8,7 +10,7 @@ module "cf_record" {
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
-  config = file("${path.module}/../../data/${local.env}/dns.yaml")
+  records = yamldecode(file("${local.data_path}/dns.yaml"))
 }
 
 # Transform Rules

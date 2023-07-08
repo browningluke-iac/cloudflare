@@ -29,7 +29,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cloudflare_zone_id"></a> [cloudflare\_zone\_id](#input\_cloudflare\_zone\_id) | n/a | `string` | n/a | yes |
-| <a name="input_config"></a> [config](#input\_config) | yaml data defining dns records | `string` | n/a | yes |
+| <a name="input_records"></a> [records](#input\_records) | list of dns records | <pre>list(object({<br>    friendly_name = string<br>    name          = string<br>    type          = string<br>    proxied       = optional(bool, true)<br>    ttl           = optional(number, 1)<br><br>    data = object({<br>      value    = string<br>      priority = optional(number, null)<br>    })<br><br>    comment = optional(string, "")<br>  }))</pre> | n/a | yes |
 
 ## Outputs
 
