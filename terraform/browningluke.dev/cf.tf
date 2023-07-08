@@ -4,8 +4,7 @@ locals {
 
 # DNS Records
 module "cf_record" {
-  source  = "app.terraform.io/browningluke/record/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/record"
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
@@ -14,8 +13,7 @@ module "cf_record" {
 
 # Transform Rules
 module "cf_rule_transform" {
-  source  = "app.terraform.io/browningluke/rule-transform/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/rule-transform"
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
@@ -24,8 +22,7 @@ module "cf_rule_transform" {
 
 # Page Rules
 module "cf_rule_page" {
-  source  = "app.terraform.io/browningluke/rule-page/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/rule-page"
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
@@ -34,8 +31,7 @@ module "cf_rule_page" {
 
 # Bulk Redirects
 module "cf_rule_redirect" {
-  source  = "app.terraform.io/browningluke/rule-redirect/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/rule-redirect"
 
   cloudflare_account_id = var.cloudflare_account_id
 
@@ -44,8 +40,7 @@ module "cf_rule_redirect" {
 
 # Firewall Rules
 module "cf_rule_firewall" {
-  source  = "app.terraform.io/browningluke/rule-firewall/cloudflare"
-  version = "~> 1.0"
+  source = "../_modules/rule-firewall"
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
